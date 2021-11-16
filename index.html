@@ -43,11 +43,18 @@
 
     const credenciais = [
       {
-        titulo: "Conta do Google",
+        titulo: "Google",
         usuario: "asdasd",
         email: "google@gmail.com",
         senha: "teste123",
         notas: "Notas de teste"
+      },
+      {
+        titulo: "Facebook",
+        usuario: "",
+        email: "facebook@gmail.com",
+        senha: "facebook123",
+        notas: ""
       },
     ]
 
@@ -70,19 +77,18 @@
 
       return html`
         <h1>Gerenciador de senhas</h1>
+        <hr/>
 
         <div>
           ${credenciais.map(({titulo, usuario, email, senha, notas}) => (
             html`
               <div>
                 <h2>${titulo}</h2>
-                <button onClick=${() => { copyToClipboard(usuario) } }>Copiar usuário</button>
-                <button onClick=${() => { copyToClipboard(email) } }>Copiar email</button>
-                <button onClick=${() => { copyToClipboard(senha) } }>Copiar senha</button>
+                ${usuario && html`<button onClick=${() => { copyToClipboard(usuario) } }>Copiar usuário</button>`}
+                ${email && html`<button onClick=${() => { copyToClipboard(email) } }>Copiar email</button>`}
+                ${senha && html`<button onClick=${() => { copyToClipboard(senha) } }>Copiar senha</button>`}
 
-                <pre>
-                  ${notas}
-                </pre>
+                ${notas && html`<pre>${notas}</pre>`}
                 <hr/>
               </div>
             `
